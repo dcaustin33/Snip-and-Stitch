@@ -1,0 +1,10 @@
+# Ignore these file extensions
+*.pt
+*.tar
+*.bin
+*.jpeg
+*.webp
+*.png
+
+# Ignore wandb directories
+wandb/
