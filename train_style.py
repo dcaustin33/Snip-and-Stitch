@@ -422,7 +422,7 @@ def training_function(text_encoder, vae, unet, wandb):
                 optimizer.zero_grad()
 
                 if logging_steps % 100 == 0:
-                    if global_step >= max_train_steps and logging_loss / logging_steps < last_loss:
+                    if global_step >= max_train_steps and (logging_loss / logging_steps) < last_loss:
                         break
                     wandb.log({"loss": logging_loss / logging_steps})
                     last_loss = logging_loss / logging_steps
@@ -436,27 +436,6 @@ def training_function(text_encoder, vae, unet, wandb):
 
             logs = {"loss": loss.detach().item()}
             progress_bar.set_postfix(**logs)
-
-            
-
-            '''if step % 1000 == 0:
-                pipeline = StableDiffusionPipeline(
-                    text_encoder=accelerator.unwrap_model(text_encoder),
-                    vae=vae,
-                    unet=unet,
-                    tokenizer=tokenizer,
-                    scheduler=PNDMScheduler(
-                        beta_start=0.00085, beta_end=0.012, beta_schedule="scaled_linear", skip_prk_steps=True
-                    ),
-                    safety_checker=StableDiffusionSafetyChecker.from_pretrained("CompVis/stable-diffusion-safety-checker"),
-                    feature_extractor=CLIPFeatureExtractor.from_pretrained("openai/clip-vit-base-patch32"),
-                )
-                pipeline.save_pretrained(output_dir + '/step_' + str(step))
-                # Also save the newly trained embeddings
-                learned_embeds1 = accelerator.unwrap_model(text_encoder).get_input_embeddings().weight[placeholder_token_id1]
-                learned_embeds_dict = {placeholder_token1: learned_embeds1.detach().cpu()}
-                torch.save(learned_embeds_dict, os.path.join(output_dir + '/step_' + str(step), "learned_embeds.bin"))'''
-                
 
 
         accelerator.wait_for_everyone()
