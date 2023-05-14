@@ -1,0 +1,194 @@
+
+Launching training on one GPU.
+Steps:   0%|                                                                                                                                                                                                                                                                           | 0/3000 [00:00<?, ?it/s]/home/ec2-user/.local/lib/python3.9/site-packages/diffusers/configuration_utils.py:134: FutureWarning: Accessing config attribute `num_train_timesteps` directly via 'DDPMScheduler' object attribute is deprecated. Please access 'num_train_timesteps' over 'DDPMScheduler's config object instead, e.g. 'scheduler.config.num_train_timesteps'.
+  deprecate("direct config name access", "1.0.0", deprecation_message, standard_warn=False)
+
+
+
+
+
+
+
+Steps:   0%|▉                                                                                                                                                                                                                                                  | 12/3000 [00:18<1:06:45,  1.34s/it, loss=0.0927]Traceback (most recent call last):
+  File "/home/ec2-user/stich_gallery/train_style.py", line 493, in <module>
+    accelerate.notebook_launcher(training_function, args=(text_encoder, vae, unet, wandb), num_processes = 1)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/accelerate/launchers.py", line 149, in notebook_launcher
+    function(*args)
+  File "/home/ec2-user/stich_gallery/train_style.py", line 400, in training_function
+    encoder_hidden_states = text_encoder(batch["input_ids"])[0]
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 816, in forward
+    return self.text_model(
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 725, in forward
+    encoder_outputs = self.encoder(
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 654, in forward
+    layer_outputs = encoder_layer(
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 382, in forward
+    hidden_states = self.layer_norm1(hidden_states)
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/normalization.py", line 189, in forward
+    return F.layer_norm(
+  File "/opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/functional.py", line 2503, in layer_norm
+    return torch.layer_norm(input, normalized_shape, weight, bias, eps, torch.backends.cudnn.enabled)
+KeyboardInterrupt
+[31m╭─────────────────────────────── [39m[1mTraceback (most recent call last)[31m[22m ────────────────────────────────╮
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/ec2-user/stich_gallery/[1mtrain_style.py[22m:[94m493[39m in [92m<module>[39m                                      [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   490 │   grid.save(args.output_dir + name + [33m"_step_{}.png"[39m.format(step))                        [31m│
+[31m│[39m   491                                                                                            [31m│
+[31m│[39m   492 [94mif[39m args.train:                                                                             [31m│
+[31m│[39m [31m❱ [39m493 │   accelerate.notebook_launcher(training_function, args=(text_encoder, vae, unet, wandb   [31m│
+[31m│[39m   494                                                                                            [31m│
+[31m│[39m   495 [94mif[39m args.generate:                                                                          [31m│
+[31m│[39m   496                                                                                            [31m│
+[31m│[39m /home/ec2-user/.local/lib/python3.9/site-packages/accelerate/[1mlaunchers.py[22m:[94m149[39m in                 [31m│
+[31m│[39m [92mnotebook_launcher[39m                                                                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   146 │   │   │   [94melse[39m:                                                                          [31m│
+[31m│[39m   147 │   │   │   │   [96mprint[39m([33m"Launching training on CPU."[39m)                                        [31m│
+[31m│[39m   148 │   │   │   [94mwith[39m patch_environment(accelerate_use_mps_device=use_mps_device):              [31m│
+[31m│[39m [31m❱ [39m149 │   │   │   │   function(*args)                                                            [31m│
+[31m│[39m   150                                                                                            [31m│
+[31m│[39m   151                                                                                            [31m│
+[31m│[39m   152 [94mdef[39m [92mdebug_launcher[39m(function, args=(), num_processes=[94m2[39m):                                    [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/ec2-user/stich_gallery/[1mtrain_style.py[22m:[94m400[39m in [92mtraining_function[39m                             [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   397 │   │   │   │   noisy_latents = noise_scheduler.add_noise(latents, noise, timesteps)       [31m│
+[31m│[39m   398 │   │   │   │                                                                              [31m│
+[31m│[39m   399 │   │   │   │   # Get the text embedding for conditioning                                  [31m│
+[31m│[39m [31m❱ [39m400 │   │   │   │   encoder_hidden_states = text_encoder(batch[[33m"input_ids"[39m])[[94m0[39m]                [31m│
+[31m│[39m   401 │   │   │   │                                                                              [31m│
+[31m│[39m   402 │   │   │   │   # Predict the noise residual                                               [31m│
+[31m│[39m   403 │   │   │   │   noise_pred = unet(noisy_latents, timesteps, encoder_hidden_states).sampl   [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/[1mmodule.py[22m:[94m1130[39m in           [31m│
+[31m│[39m [92m_call_impl[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1127 │   │   # this function, and just call forward.                                           [31m│
+[31m│[39m   1128 │   │   [94mif[39m [95mnot[39m ([96mself[39m._backward_hooks [95mor[39m [96mself[39m._forward_hooks [95mor[39m [96mself[39m._forward_pre_hooks [95mo[39m  [31m│
+[31m│[39m   1129 │   │   │   │   [95mor[39m _global_forward_hooks [95mor[39m _global_forward_pre_hooks):                   [31m│
+[31m│[39m [31m❱ [39m1130 │   │   │   [94mreturn[39m forward_call(*[96minput[39m, **kwargs)                                         [31m│
+[31m│[39m   1131 │   │   # Do not call functions when jit is used                                          [31m│
+[31m│[39m   1132 │   │   full_backward_hooks, non_full_backward_hooks = [], []                             [31m│
+[31m│[39m   1133 │   │   [94mif[39m [96mself[39m._backward_hooks [95mor[39m _global_backward_hooks:                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/[1mmodeling_clip.py[22m:[94m816[39m  [31m│
+[31m│[39m in [92mforward[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m    813 │   │   [33m```"""[39m                                                                            [31m│
+[31m│[39m    814 │   │   return_dict = return_dict [94mif[39m return_dict [95mis[39m [95mnot[39m [94mNone[39m [94melse[39m [96mself[39m.config.use_return  [31m│
+[31m│[39m    815 │   │                                                                                     [31m│
+[31m│[39m [31m❱ [39m 816 │   │   [94mreturn[39m [96mself[39m.text_model(                                                           [31m│
+[31m│[39m    817 │   │   │   input_ids=input_ids,                                                          [31m│
+[31m│[39m    818 │   │   │   attention_mask=attention_mask,                                                [31m│
+[31m│[39m    819 │   │   │   position_ids=position_ids,                                                    [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/[1mmodule.py[22m:[94m1130[39m in           [31m│
+[31m│[39m [92m_call_impl[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1127 │   │   # this function, and just call forward.                                           [31m│
+[31m│[39m   1128 │   │   [94mif[39m [95mnot[39m ([96mself[39m._backward_hooks [95mor[39m [96mself[39m._forward_hooks [95mor[39m [96mself[39m._forward_pre_hooks [95mo[39m  [31m│
+[31m│[39m   1129 │   │   │   │   [95mor[39m _global_forward_hooks [95mor[39m _global_forward_pre_hooks):                   [31m│
+[31m│[39m [31m❱ [39m1130 │   │   │   [94mreturn[39m forward_call(*[96minput[39m, **kwargs)                                         [31m│
+[31m│[39m   1131 │   │   # Do not call functions when jit is used                                          [31m│
+[31m│[39m   1132 │   │   full_backward_hooks, non_full_backward_hooks = [], []                             [31m│
+[31m│[39m   1133 │   │   [94mif[39m [96mself[39m._backward_hooks [95mor[39m _global_backward_hooks:                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/[1mmodeling_clip.py[22m:[94m725[39m  [31m│
+[31m│[39m in [92mforward[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m    722 │   │   │   # [bsz, seq_len] -> [bsz, 1, tgt_seq_len, src_seq_len]                        [31m│
+[31m│[39m    723 │   │   │   attention_mask = _expand_mask(attention_mask, hidden_states.dtype)            [31m│
+[31m│[39m    724 │   │                                                                                     [31m│
+[31m│[39m [31m❱ [39m 725 │   │   encoder_outputs = [96mself[39m.encoder(                                                   [31m│
+[31m│[39m    726 │   │   │   inputs_embeds=hidden_states,                                                  [31m│
+[31m│[39m    727 │   │   │   attention_mask=attention_mask,                                                [31m│
+[31m│[39m    728 │   │   │   causal_attention_mask=causal_attention_mask,                                  [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/[1mmodule.py[22m:[94m1130[39m in           [31m│
+[31m│[39m [92m_call_impl[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1127 │   │   # this function, and just call forward.                                           [31m│
+[31m│[39m   1128 │   │   [94mif[39m [95mnot[39m ([96mself[39m._backward_hooks [95mor[39m [96mself[39m._forward_hooks [95mor[39m [96mself[39m._forward_pre_hooks [95mo[39m  [31m│
+[31m│[39m   1129 │   │   │   │   [95mor[39m _global_forward_hooks [95mor[39m _global_forward_pre_hooks):                   [31m│
+[31m│[39m [31m❱ [39m1130 │   │   │   [94mreturn[39m forward_call(*[96minput[39m, **kwargs)                                         [31m│
+[31m│[39m   1131 │   │   # Do not call functions when jit is used                                          [31m│
+[31m│[39m   1132 │   │   full_backward_hooks, non_full_backward_hooks = [], []                             [31m│
+[31m│[39m   1133 │   │   [94mif[39m [96mself[39m._backward_hooks [95mor[39m _global_backward_hooks:                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/[1mmodeling_clip.py[22m:[94m654[39m  [31m│
+[31m│[39m in [92mforward[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m    651 │   │   │   │   │   causal_attention_mask,                                                [31m│
+[31m│[39m    652 │   │   │   │   )                                                                         [31m│
+[31m│[39m    653 │   │   │   [94melse[39m:                                                                         [31m│
+[31m│[39m [31m❱ [39m 654 │   │   │   │   layer_outputs = encoder_layer(                                            [31m│
+[31m│[39m    655 │   │   │   │   │   hidden_states,                                                        [31m│
+[31m│[39m    656 │   │   │   │   │   attention_mask,                                                       [31m│
+[31m│[39m    657 │   │   │   │   │   causal_attention_mask,                                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/[1mmodule.py[22m:[94m1130[39m in           [31m│
+[31m│[39m [92m_call_impl[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1127 │   │   # this function, and just call forward.                                           [31m│
+[31m│[39m   1128 │   │   [94mif[39m [95mnot[39m ([96mself[39m._backward_hooks [95mor[39m [96mself[39m._forward_hooks [95mor[39m [96mself[39m._forward_pre_hooks [95mo[39m  [31m│
+[31m│[39m   1129 │   │   │   │   [95mor[39m _global_forward_hooks [95mor[39m _global_forward_pre_hooks):                   [31m│
+[31m│[39m [31m❱ [39m1130 │   │   │   [94mreturn[39m forward_call(*[96minput[39m, **kwargs)                                         [31m│
+[31m│[39m   1131 │   │   # Do not call functions when jit is used                                          [31m│
+[31m│[39m   1132 │   │   full_backward_hooks, non_full_backward_hooks = [], []                             [31m│
+[31m│[39m   1133 │   │   [94mif[39m [96mself[39m._backward_hooks [95mor[39m _global_backward_hooks:                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/ec2-user/.local/lib/python3.9/site-packages/transformers/models/clip/[1mmodeling_clip.py[22m:[94m382[39m  [31m│
+[31m│[39m in [92mforward[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m    379 │   │   [33m"""[39m                                                                               [31m│
+[31m│[39m    380 │   │   residual = hidden_states                                                          [31m│
+[31m│[39m    381 │   │                                                                                     [31m│
+[31m│[39m [31m❱ [39m 382 │   │   hidden_states = [96mself[39m.layer_norm1(hidden_states)                                   [31m│
+[31m│[39m    383 │   │   hidden_states, attn_weights = [96mself[39m.self_attn(                                     [31m│
+[31m│[39m    384 │   │   │   hidden_states=hidden_states,                                                  [31m│
+[31m│[39m    385 │   │   │   attention_mask=attention_mask,                                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/[1mmodule.py[22m:[94m1130[39m in           [31m│
+[31m│[39m [92m_call_impl[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1127 │   │   # this function, and just call forward.                                           [31m│
+[31m│[39m   1128 │   │   [94mif[39m [95mnot[39m ([96mself[39m._backward_hooks [95mor[39m [96mself[39m._forward_hooks [95mor[39m [96mself[39m._forward_pre_hooks [95mo[39m  [31m│
+[31m│[39m   1129 │   │   │   │   [95mor[39m _global_forward_hooks [95mor[39m _global_forward_pre_hooks):                   [31m│
+[31m│[39m [31m❱ [39m1130 │   │   │   [94mreturn[39m forward_call(*[96minput[39m, **kwargs)                                         [31m│
+[31m│[39m   1131 │   │   # Do not call functions when jit is used                                          [31m│
+[31m│[39m   1132 │   │   full_backward_hooks, non_full_backward_hooks = [], []                             [31m│
+[31m│[39m   1133 │   │   [94mif[39m [96mself[39m._backward_hooks [95mor[39m _global_backward_hooks:                                [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/modules/[1mnormalization.py[22m:[94m189[39m in     [31m│
+[31m│[39m [92mforward[39m                                                                                          [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   186 │   │   │   init.zeros_([96mself[39m.bias)                                                         [31m│
+[31m│[39m   187 │                                                                                          [31m│
+[31m│[39m   188 │   [94mdef[39m [92mforward[39m([96mself[39m, [96minput[39m: Tensor) -> Tensor:                                            [31m│
+[31m│[39m [31m❱ [39m189 │   │   [94mreturn[39m F.layer_norm(                                                               [31m│
+[31m│[39m   190 │   │   │   [96minput[39m, [96mself[39m.normalized_shape, [96mself[39m.weight, [96mself[39m.bias, [96mself[39m.eps)                [31m│
+[31m│[39m   191 │                                                                                          [31m│
+[31m│[39m   192 │   [94mdef[39m [92mextra_repr[39m([96mself[39m) -> [96mstr[39m:                                                           [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /opt/conda/envs/pytorch/lib/python3.9/site-packages/torch/nn/[1mfunctional.py[22m:[94m2503[39m in [92mlayer_norm[39m    [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   2500 │   │   [94mreturn[39m handle_torch_function(                                                     [31m│
+[31m│[39m   2501 │   │   │   layer_norm, ([96minput[39m, weight, bias), [96minput[39m, normalized_shape, weight=weight, b  [31m│
+[31m│[39m   2502 │   │   )                                                                                 [31m│
+[31m│[39m [31m❱ [39m2503 │   [94mreturn[39m torch.layer_norm([96minput[39m, normalized_shape, weight, bias, eps, torch.backends.c  [31m│
+[31m│[39m   2504                                                                                           [31m│
+[31m│[39m   2505                                                                                           [31m│
+[31m│[39m   2506 [94mdef[39m [92mgroup_norm[39m(                                                                           [31m│
+[31m╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+[1mKeyboardInterrupt

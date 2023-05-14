@@ -1,0 +1,65 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.13.2
+    framework: huggingface
+    huggingface_version: 4.26.1
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.9.13
+    start_time: 1684094251.474854
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 11
+      - 12
+      - 41
+      - 45
+      - 49
+      - 55
+      - 71
+      2:
+      - 1
+      - 2
+      - 3
+      - 11
+      - 12
+      - 41
+      - 45
+      - 49
+      - 55
+      - 71
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.9.13
+      5: 0.13.2
+      6: 4.26.1
+      8:
+      - 5
+data_dir:
+  desc: null
+  value: barnacles/Full_pic_training_set
+generate:
+  desc: null
+  value: false
+output_dir:
+  desc: null
+  value: barnacles/segmeneted_pics/
+resized_crop:
+  desc: null
+  value: false
+save_model_path:
+  desc: null
+  value: barnacles/outputs_segmented_style_model
+steps:
+  desc: null
+  value: 3000
+train:
+  desc: null
+  value: true
