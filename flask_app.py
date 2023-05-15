@@ -32,7 +32,7 @@ def index():
         selected_image = request.form.get("image")
         print(f"User selected image: {selected_image}")
         # Here you can save the selection to a database or file
-        with open(f'static/results{uuid.uuid4()}.txt', 'w') as f:
+        with open(f'static/results/{uuid.uuid4()}.txt', 'w') as f:
             f.write(f'{selected_image}, {category}')
         f.close()
     # shuffle the images
