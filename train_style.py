@@ -37,6 +37,7 @@ parser.add_argument('-resized_crop', action='store_true')
 parser.add_argument('--save_model_path', type=str)
 parser.add_argument('--steps', type=int, default=3000)
 parser.add_argument('-generate', action='store_true')
+parser.add_argument('--wandb', action='store_true')
 args = parser.parse_args()
 if args.output_dir[-1] != '/':
   args.output_dir += '/'
@@ -315,8 +316,6 @@ hyperparameters = {
     "seed": 42,
     "output_dir": args.save_model_path,
 }
-if args.train:
-    wandb = wandb.init(config = args, name = args.save_model_path, project = 'attribute-inversion')
 # %%
 def training_function(text_encoder, vae, unet, wandb):
     logger = get_logger(__name__)

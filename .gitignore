@@ -4,7 +4,7 @@
 *.bin
 *.jpeg
 *.webp
-*.png
+
 
 # Ignore wandb directories
 wandb/
