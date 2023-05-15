@@ -1,0 +1,35 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <body>
+        <form method="POST">
+            <p>Which image looks more like a {{category}}?</p>
+            <p> A {{category}} looks like this: </p>
+            <img src="{{category_path}}" width="200">
+            <br>
+            <br>
+            <br>
+            <label>
+                <input type="radio" name="image" value="hand1.png" required>
+                <img src="{{image_path_1}}" width="200">
+            </label>
+            <label>
+                <input type="radio" name="image" value="hand2.png" required>
+                <img src="{{image_path_2}}" width="200">
+            </label>
+            <label>
+                <input type="radio" name="image" value="hand3.png" required>
+                <img src="{{image_path_3}}" width="200">
+            </label>
+            <label>
+                <input type="radio" name="image" value="hand4.png" required>
+                <img src="{{image_path_3}}" width="200">
+            </label>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if selected_image %}
+        <p>You selected: {{selected_image}}</p>
+        {% endif %}
+    </body>
+</html>
