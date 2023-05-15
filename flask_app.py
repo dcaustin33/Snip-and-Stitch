@@ -32,18 +32,27 @@ def index():
         selected_image = request.form.get("image")
         print(f"User selected image: {selected_image}")
         # Here you can save the selection to a database or file
-        with open(f'{uuid.uuid4()}.txt', 'w') as f:
-            f.write(f'static/results/{selected_image}, {category}')
+        with open(f'static/results{uuid.uuid4()}.txt', 'w') as f:
+            f.write(f'{selected_image}, {category}')
         f.close()
-    print(category_path)
+    # shuffle the images
+    image_paths = [image_path1, image_path2, image_path3, image_path4]
+    types = ['composite_style', 'seg_style', 'composite_inversion', 'seg_inversion']
+    image_paths_types = list(zip(image_paths, types))
+    random.shuffle(image_paths_types)
+    
     return render_template("index.html", 
                            category = category,
                            selected_image=None, 
                            category_path=category_path,
-                           image_path_1=image_path1,
-                           image_path_2=image_path2,
-                           image_path_3=image_path3,
-                           image_path_4=image_path4)
+                           image_path_1=image_paths_types[0][0],
+                           image_path_2=image_paths_types[1][0],
+                           image_path_3=image_paths_types[2][0],
+                           image_path_4=image_paths_types[3][0],
+                           image_paths_type1=image_paths_types[0][1],
+                           image_paths_type2=image_paths_types[1][1],
+                           image_paths_type3=image_paths_types[2][1],
+                           image_paths_type4=image_paths_types[3][1])
 
 if __name__ == "__main__":
     app.run(debug=True, port=7001)
