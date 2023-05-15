@@ -9,8 +9,9 @@ features = ['barnacles', 'coral', 'lichen', 'komondor', 'worms', 'ladybugs']
 
 def get_image_paths(category):
     image_paths = []
-    randint = random.randint(1, 40)
+    
     directory_of_images = os.listdir(f"static/{category}/composite_style")
+    randint = random.randint(1, len(directory_of_images)
     image_suffix = directory_of_images[randint]
     image_path1 = f"static/{category}/composite_style/{image_suffix}"
     image_path2 = f"static/{category}/seg_style/{image_suffix}"
