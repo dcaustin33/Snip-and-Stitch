@@ -14,14 +14,14 @@ python3 generate_inpainting_for_multiple_pics.py \
         'generation_pics/hair_pics/hair6.png' \
         'generation_pics/hair_pics/hair7.png' \
     --mask_paths \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask0.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask1.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask2.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask3.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask4.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask5.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask6.png' \
-        '/home/ec2-user/diffusion_learning/generation_pics/hair_masks/hair_mask7.png' \
+        'generation_pics/hair_masks/hair_mask0.png' \
+        'generation_pics/hair_masks/hair_mask1.png' \
+        'generation_pics/hair_masks/hair_mask2.png' \
+        'generation_pics/hair_masks/hair_mask3.png' \
+        'generation_pics/hair_masks/hair_mask4.png' \
+        'generation_pics/hair_masks/hair_mask5.png' \
+        'generation_pics/hair_masks/hair_mask6.png' \
+        'generation_pics/hair_masks/hair_mask7.png' \
     --output_path komondor/all_generations/model_3_generations/ \
     --num_images_to_generate $NUM_IMAGES_TO_GENERATE \
     --device $DEVICE;
