@@ -1,6 +1,7 @@
 # Stich_gallery
 ## Training
-The train_snip_and_stich.py script is used for training each of our models. It is accompanied by the train_example.sh script, which sets all the necessary arguments for training a complete model. The train_snip_and_stich.py file provides descriptions for each argument to ensure clarity.
+The train_snip_and_stich.py script is used for training each of our models. It is accompanied by the train_example.sh script, which provides
+an example of setting all the necessary arguments for training a complete model. The train_snip_and_stich.py file provides descriptions for each argument to ensure clarity.
 
 Similarly, we use the train_text_inversion.py script for training normal text inversion. Although the files are almost identical, we separate them for better organization. The only distinction between the two is the prompts used to train the models.
 
