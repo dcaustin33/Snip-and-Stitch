@@ -1,19 +1,11 @@
 # Stich_gallery
 ## Training
-train_snip_and_stich.py is what is used to train each of our models. It has an associated train_example.sh
-which sets all arguments needed to train a full model. The python file provides a descripition of 
-each argument as well for clarity.
-train_text_inversion.py is what is used to train normal text inversion. The files are virtually 
-identical however we separate them for clarity. The only difference between the two are the 
-prompts used to train the models.
+The train_snip_and_stich.py script is used for training each of our models. It is accompanied by the train_example.sh script, which sets all the necessary arguments for training a complete model. The train_snip_and_stich.py file provides descriptions for each argument to ensure clarity.
+
+Similarly, we use the train_text_inversion.py script for training normal text inversion. Although the files are almost identical, we separate them for better organization. The only distinction between the two is the prompts used to train the models.
 
 # Generation
-generating_inpainting.py is a script used to generate inpainting pictures. Users need to provide
-pictures as well as masks over which to generate. generate_example.sh has an example bash script
-needed to generate pictures.
+To generate inpainting pictures, we utilize the generating_inpainting.py script. Users are required to provide pictures and corresponding masks for the generation process. The generate_example.sh script includes a sample bash script that demonstrates how to generate pictures.
 
 # Evaluation
-clip_ranking.py is a script used to rank many inpainting photos providing the top 20, 40, 60, 80, 100
-scores as given by CLIP text similarity per directory as well as the average ranking per directory. 
-It also saves the images  in ranked order to the output_path provided. clip_text_ranking.sh provides 
-an example bash script to run evaluation.
+For ranking inpainting photos, we employ the clip_ranking.py script. It calculates the top 20, 40, 60, 80, and 100 scores based on CLIP text similarity for each directory. Additionally, it provides the average ranking per directory and saves the images in ranked order to the specified output_path. An example bash script, clip_text_ranking.sh, is provided for running the evaluation.
