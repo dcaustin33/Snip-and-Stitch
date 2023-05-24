@@ -15,5 +15,5 @@ needed to generate pictures.
 # Evaluation
 clip_ranking.py is a script used to rank many inpainting photos providing the top 20, 40, 60, 80, 100
 scores as given by CLIP text similarity per directory as well as the average ranking per directory. 
-The thought is that files for a given model will be in a single directory. It also saves the images 
-in ranked order to the output_path provided. clip_text_ranking.sh provides an example bash script to run evaluation.
+It also saves the images  in ranked order to the output_path provided. clip_text_ranking.sh provides 
+an example bash script to run evaluation.
